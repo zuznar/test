@@ -3,14 +3,23 @@ node('master') {
     stage('Pre-commit clean') {
         cleanWs()
     }
-    stage('test-http-token') {
+    stage('test-http-token-sswdcdevgcp') {
         echo 'Cloning configuration'
         git branch: 'master', url: 'https://proxy.git.sabre-gcp.com/scm/sswops/zuzanna-tests.git', credentialsId: 'svc-ark-sswdcdevgcp-git-http-token'
     }
+    stage('test-http-token-ctopscicd') {
+        echo 'Cloning configuration'
+        git branch: 'master', url: 'https://proxy.git.sabre-gcp.com/scm/sswops/zuzanna-tests.git', credentialsId: 'svc-ark-ctopscicd-git-http-token'
+    }
 
-    stage('test-ssh-key') {
+    stage('test-ssh-key-sswdcdevgcp') {
         echo 'Cloning configuration'
         git branch: 'master', url: 'ssh://git@proxy.git.sabre-gcp.com/sswops/zuzanna-tests.git', credentialsId: 'svc-ark-sswdcdevgcp-git-ssh-key'
+    }
+
+    stage('test-ssh-key-ctopscicd') {
+        echo 'Cloning configuration'
+        git branch: 'master', url: 'ssh://git@proxy.git.sabre-gcp.com/sswops/zuzanna-tests.git', credentialsId: 'svc-ark-ctopscicd-git-ssh-key'
     }
 
     stage('Post-commit clean') {
