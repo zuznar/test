@@ -42,17 +42,60 @@ node('master') {
                 authentication: "svc-ark-sswdcdevgcp-nexus-token-dev"
     }
 
-    stage("promote to trusted") {
-        triggerRemoteJob(
-                remoteJenkinsName: "gcp.promote.repository.sabre.com",
-                auth: CredentialsAuth(credentials: 'svc-ark-sswdcdevgcp-promotion-token'),
-                enhancedLogging: true,
-                job: "promote-config",
-                blockBuildUntilComplete: true,
-                parameters: "groupId=" + "testgroup" + "\n" +
-                        "artifactId=" + "testartifact" + "\n" +
-                        "version=" + "testver"
+    stage("promote to trusted - sswdcdevgcp") {
+        try {
+            triggerRemoteJob(
+                    remoteJenkinsName: "gcp.promote.repository.sabre.com",
+                    auth: CredentialsAuth(credentials: 'svc-ark-sswdcdevgcp-promotion-token'),
+                    enhancedLogging: true,
+                    job: "promote-config",
+                    blockBuildUntilComplete: true,
+                    parameters: "groupId=" + "testgroup" + "\n" +
+                            "artifactId=" + "testartifact" + "\n" +
+                            "version=" + "testver"
 
-        )
+            )
+        }catch (err) {
+            echo "something failed"
+            currentBuild.result = 'UNSTABLE'
+        }
     }
+
+    stage("promote to trusted - ctopscicd") {
+        try {
+            triggerRemoteJob(
+                    remoteJenkinsName: "gcp.promote.repository.sabre.com",
+                    auth: CredentialsAuth(credentials: 'svc-ark-ctopscicd-promotion-token'),
+                    enhancedLogging: true,
+                    job: "promote-config",
+                    blockBuildUntilComplete: true,
+                    parameters: "groupId=" + "testgroup" + "\n" +
+                            "artifactId=" + "testartifact" + "\n" +
+                            "version=" + "testver"
+
+            )
+        }catch (err) {
+            echo "something failed"
+            currentBuild.result = 'UNSTABLE'
+        }
+    }
+
+    stage("promote to trusted - ctopscicd (cfg from global)") {
+        try {
+            triggerRemoteJob(
+                    remoteJenkinsName: "gcp.promote.repository.sabre.com",
+                    enhancedLogging: true,
+                    job: "promote-config",
+                    blockBuildUntilComplete: true,
+                    parameters: "groupId=" + "testgroup" + "\n" +
+                            "artifactId=" + "testartifact" + "\n" +
+                            "version=" + "testver"
+
+            )
+        }catch (err) {
+            echo "something failed"
+            currentBuild.result = 'UNSTABLE'
+        }
+    }
+
 }
