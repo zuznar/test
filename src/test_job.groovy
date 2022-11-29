@@ -3,6 +3,13 @@ node('master') {
     stage('Pre-commit clean') {
         cleanWs()
     }
+    stage('show sab-dev-dcmc json') {
+        withCredentials([file(credentialsId: 'sab-dev-dcmc', variable: 'GCLOUD_CREDS')]) {
+            sh """
+                            cat "$GCLOUD_CREDS"
+                       """
+        }
+    }
     stage('test-http-token-sswdcdevgcp') {
         echo 'Cloning configuration'
         git branch: 'master', url: 'https://proxy.git.sabre-gcp.com/scm/sswops/zuzanna-tests.git', credentialsId: 'svc-ark-sswdcdevgcp-git-http-token'
