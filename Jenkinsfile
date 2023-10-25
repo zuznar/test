@@ -42,15 +42,14 @@ pipeline {
 
         stage('Commit to GitHub') {
               steps {
-                withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test',
-                                                  usernameVariable: 'GITHUB_APP',
-                                                  passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
+                    script {
+                        sshagent(credentials: ['only for test (US1783052)']) {
 
-                  sh 'git clone git@github.com:zuznar/test.git'
-                  sh 'ls -l'
+                            sh 'git clone git@github.com:zuznar/test.git'
+                            sh 'ls -l'
+                        }
+                    }
 
-
-                }
               }
         }
     }
