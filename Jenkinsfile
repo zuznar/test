@@ -46,6 +46,9 @@ pipeline {
                                                   usernameVariable: 'GITHUB_APP',
                                                   passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
 
+                  sh 'git clone git@github.com:zuznar/test.git'
+                  sh 'ls -l'
+
 
                 }
               }
