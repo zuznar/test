@@ -39,6 +39,26 @@ pipeline {
                 }
             }
         }
+
+        stage('Commit to GitHub') {
+              steps {
+                withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test',
+                                                  usernameVariable: 'GITHUB_APP',
+                                                  passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
+                script {
+                git url: "git@github.com:zuznar/test.git",
+                    credentialsId: 'US1783052_GitHub_App_test',
+                    branch: "master"
+                    for (directory in CHANGED_DIRECTORIES) {
+                    sh "git checkout -b newBranch123"
+                    sh 'git add ${directory}'
+                    sh 'git commit -am "Commit :)'
+                    sh "git push origin NewBranch"
+                    }
+                }
+                }
+              }
+        }
     }
     post {
         failure{
