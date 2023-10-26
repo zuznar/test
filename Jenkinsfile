@@ -42,13 +42,13 @@ pipeline {
 
         stage('Commit to GitHub') {
               steps {
-                    script {
-                        sshagent(credentials: ['only for test (US1783052)']) {
 
-                            sh 'git clone git@github.com:zuznar/test.git'
-                            sh 'ls -l'
-                        }
-                    }
+                          git branch: 'main',
+                              credentialsId: 'US1783052_GitHub_App_test',
+                              url: 'https://github.com/zuznar/test.git'
+
+                          sh "ls -lat"
+
 
               }
         }
