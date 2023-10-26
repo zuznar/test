@@ -46,7 +46,8 @@ pipeline {
                           git credentialsId: 'US1783052_GitHub_App_test',
                               url: 'https://github.com/zuznar/test.git'
 
-                          sh "ls -lart /test"
+                          sh "cd test"
+                          sh "ls"
 
                     }
 
