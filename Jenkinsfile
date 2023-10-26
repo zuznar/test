@@ -49,7 +49,7 @@ pipeline {
                           sh 'echo "insert text here" > myfile.txt'
                           sh "ls"
                           sh 'git add myfile.txt'
-                          sh 'commit -m "message"'
+                          sh 'git commit -m "message"'
                           sh 'git push'
                     }
 
