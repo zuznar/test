@@ -42,13 +42,13 @@ pipeline {
 
         stage('Commit to GitHub') {
               steps {
-
-                          git branch: 'main',
-                              credentialsId: 'US1783052_GitHub_App_test',
+                    script {
+                          git credentialsId: 'US1783052_GitHub_App_test',
                               url: 'https://github.com/zuznar/test.git'
 
-                          sh "ls -lat"
+                          sh "ls -lart ./*"
 
+                    }
 
               }
         }
