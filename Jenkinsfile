@@ -43,19 +43,20 @@ pipeline {
         stage('Commit to GitHub') {
               steps {
                     script {
+
+                          sh 'echo "insert text here" > myfile.txt'
+
                           git credentialsId: 'US1783052_GitHub_App_test',
                               url: 'https://github.com/zuznar/test.git'
 
-                          sh 'echo "insert text here" > myfile.txt'
-                          sh "ls"
-                          sh 'git add myfile.txt'
-                          sh 'git commit -m "message"'
                           withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test',
-                                                                    usernameVariable: 'GIT_USERNAME',
-                                                                    passwordVariable: 'GIT_PASSWORD')]) {
-                                      sh '''
-                                        git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/zuznar/test.git
-                                      '''
+                                                                    usernameVariable: 'USER',
+                                                                    passwordVariable: 'GIT_PASS')]) {
+                             env.encodedPass=URLEncoder.encode(PASS, "UTF-8")
+                            sh 'git clone https://${USER}:${encodedPass}@github.com/zuznar/test.git -b main'
+                            sh 'git add .'
+                            sh 'git commit -m "foobar" '
+                            sh 'git push'
                                   }
                     }
 
