@@ -52,7 +52,7 @@ pipeline {
                           withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test',
                                                                     usernameVariable: 'USER',
                                                                     passwordVariable: 'PASS')]) {
-                            sh 'git clone https://${USER}:${encodedPass}@github.com/zuznar/test.git -b main'
+                            sh 'git clone https://${USER}:${PASS}@github.com/zuznar/test.git -b main'
                             sh 'git add .'
                             sh 'git commit -m "foobar" '
                             sh 'git push'
