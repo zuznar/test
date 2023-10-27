@@ -46,21 +46,22 @@ pipeline {
 
                           sh 'echo "insert text here" > myfile.txt'
 
-                          git  branch: 'main',
-                              credentialsId: 'US1783052_GitHub_App_test',
-                              url: 'https://github.com/zuznar/test.git'
+                          //git  branch: 'main',
+                          //    credentialsId: 'US1783052_GitHub_App_test',
+                          //    url: 'https://github.com/zuznar/test.git'
 
-                          sh 'ls'
 
-                          //withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test',
-                          //                                          usernameVariable: 'GITHUB_APP',
-                          //                                          passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
-                          //
-                          //  sh 'git clone https://${GITHUB_APP}:${GITHUB_ACCESS_TOKEN}@github.com/zuznar/test.git -b main'
-                          //  sh 'git add myfile.txt'
-                          //  sh 'git commit -m "test commit" '
-                          //  sh 'git push https://${GITHUB_APP}:${GITHUB_ACCESS_TOKEN}@github.com/zuznar/test.git -b main'
-                       //   }
+                          withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test',
+                                                            usernameVariable: 'GITHUB_APP',
+                                                                    passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
+
+
+                            sh 'git branch --all '
+                            sh 'git clone https://${GITHUB_APP}:${GITHUB_ACCESS_TOKEN}@github.com/zuznar/test.git'
+                            sh 'git add myfile.txt'
+                            sh 'git commit -m "test commit" '
+                            sh 'git push https://${GITHUB_APP}:${GITHUB_ACCESS_TOKEN}@github.com/zuznar/test.git'
+                          }
                     }
 
               }
