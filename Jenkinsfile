@@ -53,14 +53,15 @@ pipeline {
 
                           withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test',
                                                             usernameVariable: 'GITHUB_APP',
-                                                                    passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
+                                                            passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
 
 
-                            sh 'git branch --all '
-                            sh 'git clone https://${GITHUB_APP}:${GITHUB_ACCESS_TOKEN}@github.com/zuznar/test.git'
-                            sh 'git add myfile.txt'
-                            sh 'git commit -m "test commit" '
-                            sh 'git push https://${GITHUB_APP}:${GITHUB_ACCESS_TOKEN}@github.com/zuznar/test.git'
+                             sh 'echo ${GIT_USER}'
+                            //sh 'git branch --all '
+                            //sh 'git clone https://${GITHUB_APP}:${GITHUB_ACCESS_TOKEN}@github.com/zuznar/test.git'
+                            //sh 'git add myfile.txt'
+                            //sh 'git commit -m "test commit" '
+                           // sh 'git push https://${GITHUB_APP}:${GITHUB_ACCESS_TOKEN}@github.com/zuznar/test.git'
                           }
                     }
 
