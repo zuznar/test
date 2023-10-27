@@ -56,7 +56,7 @@ pipeline {
                                                             passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
 
 
-                             sh 'echo ${GIT_USER}'
+                             sh 'echo ${GITHUB_APP}'
                             //sh 'git branch --all '
                             //sh 'git clone https://${GITHUB_APP}:${GITHUB_ACCESS_TOKEN}@github.com/zuznar/test.git'
                             //sh 'git add myfile.txt'
