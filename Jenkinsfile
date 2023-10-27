@@ -50,9 +50,9 @@ pipeline {
                               url: 'https://github.com/zuznar/test.git'
 
                           withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test',
-                                                                    usernameVariable: 'USER',
-                                                                    passwordVariable: 'PASS')]) {
-                            sh 'git clone https://${USER}:${PASS}@github.com/zuznar/test.git -b main'
+                                                                    usernameVariable: 'GITHUB_APP',
+                                                                    passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
+                            sh 'git clone https://${GITHUB_APP}:${GITHUB_ACCESS_TOKEN}@github.com/zuznar/test.git -b main'
                             sh 'git add .'
                             sh 'git commit -m "foobar" '
                             sh 'git push'
