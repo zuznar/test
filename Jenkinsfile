@@ -42,26 +42,23 @@ pipeline {
 
         stage('Commit to GitHub') {
               steps {
-                    //script {
+                    script {
 
                           sh 'echo "insert text here" > myfile.txt'
 
-                         // git credentialsId: 'US1783052_GitHub_App_test',
-                          //    url: 'https://github.com/zuznar/test.git'
+                          git credentialsId: 'US1783052_GitHub_App_test',
+                              url: 'https://github.com/zuznar/test.git'
 
-                          withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test',
-                                                                    usernameVariable: 'GITHUB_APP',
-                                                                    passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
-
-                            script {
-                                env.encodedPass=URLEncoder.encode(GITHUB_ACCESS_TOKEN, "UTF-8")
-                            }
-                            sh 'git clone https://${GITHUB_APP}:${encodedPass}@github.com/zuznar/test.git -b main'
-                            sh 'git add myfile.txt'
-                            sh 'git commit -m "test commit" '
-                            sh 'git push https://${GITHUB_APP}:${encodedPass}@github.com/zuznar/test.git -b main'
-                          }
-                    //}
+                          //withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test',
+                          //                                          usernameVariable: 'GITHUB_APP',
+                          //                                          passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
+                          //
+                          //  sh 'git clone https://${GITHUB_APP}:${GITHUB_ACCESS_TOKEN}@github.com/zuznar/test.git -b main'
+                          //  sh 'git add myfile.txt'
+                          //  sh 'git commit -m "test commit" '
+                          //  sh 'git push https://${GITHUB_APP}:${GITHUB_ACCESS_TOKEN}@github.com/zuznar/test.git -b main'
+                       //   }
+                    }
 
               }
         }
