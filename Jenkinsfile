@@ -44,14 +44,14 @@ pipeline {
               steps {
                     script {
 
-                          sh 'echo "insert text here" > myfile.txt'
-
                           //git  branch: 'main',
                           //    credentialsId: 'US1783052_GitHub_App_test',
                           //    url: 'https://github.com/zuznar/test.git'
 
                           withCredentials([GitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
                             sh 'git clone https://github.com/zuznar/test.git'
+                            sh 'cd test'
+                            sh 'echo "insert text here" > myfile.txt'
                             sh 'git add myfile.txt'
                             sh 'git commit -m "test commit" '
                             sh 'git push https://github.com/zuznar/test.git'
