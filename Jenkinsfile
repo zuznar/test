@@ -49,6 +49,8 @@ pipeline {
                           git credentialsId: 'US1783052_GitHub_App_test',
                               url: 'https://github.com/zuznar/test.git'
 
+                          sh 'ls test'
+
                           //withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test',
                           //                                          usernameVariable: 'GITHUB_APP',
                           //                                          passwordVariable: 'GITHUB_ACCESS_TOKEN')]) {
