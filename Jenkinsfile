@@ -46,7 +46,8 @@ pipeline {
 
                           sh 'echo "insert text here" > myfile.txt'
 
-                          git credentialsId: 'US1783052_GitHub_App_test',
+                          git  branch: 'main',
+                              credentialsId: 'US1783052_GitHub_App_test',
                               url: 'https://github.com/zuznar/test.git'
 
                           sh 'ls'
