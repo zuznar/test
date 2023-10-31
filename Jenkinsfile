@@ -48,7 +48,7 @@ pipeline {
                           //    credentialsId: 'US1783052_GitHub_App_test',
                           //    url: 'https://github.com/zuznar/test.git'
                            // sh 'env|sort'
-                          sh 'curl -v -L 10.109.0.2'
+                          sh 'curl -v -L github.com'
 
                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
                            // sh 'git clone https://github.com/zuznar/test.git test'
