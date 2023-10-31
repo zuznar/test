@@ -48,7 +48,7 @@ pipeline {
                           //    credentialsId: 'US1783052_GitHub_App_test',
                           //    url: 'https://github.com/zuznar/test.git'
                            // sh 'env|sort'
-                          sh 'curl -v -L google.com'
+                          sh 'curl -v -L sabre.com'
 
                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
                            // sh 'git clone https://github.com/zuznar/test.git test'
