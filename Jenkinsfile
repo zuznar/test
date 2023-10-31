@@ -48,15 +48,23 @@ pipeline {
 
                           sh 'ping www.github.com'
 
-                         // withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
-                            //sh 'git clone https://github.com/zuznar/test.git'
-                            //sh 'cd test'
-                           // sh 'echo "insert text here" > myfile.txt'
-                           // sh 'git add myfile.txt'
-                           // sh 'git commit -m "test commit" '
-                          //  sh 'git push https://github.com/zuznar/test.git'
+                          withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
+                            sh 'git clone https://github.com/zuznar/test.git test'
+                            sh 'cd test'
+                          //  sh "git branch ${branch_name}"
+                          //  sh "git checkout -b ${branch_name}"
+                          //  sh "git push --set-upstream origin ${branch_name}"
+                           // script{
+                             //   for (directory in CHANGED_DIRECTORIES) {
+                              //  sh "git add ${directory}"
+                              //  }
+                            //}
+                            sh 'echo "insert text here" > myfile.txt'
+                            sh 'git add myfile.txt'
+                            sh 'git commit -m "test commit" '
+                            sh 'git push https://github.com/zuznar/test.git'
 
-                          //}
+                          }
               }
         }
     }
