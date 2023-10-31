@@ -48,7 +48,6 @@ pipeline {
                           //    credentialsId: 'US1783052_GitHub_App_test',
                           //    url: 'https://github.com/zuznar/test.git'
 
-                          sh 'sudo su -'
                           sh 'curl -v https://www.github.com'
 
                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
