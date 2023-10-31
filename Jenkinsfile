@@ -46,7 +46,7 @@ pipeline {
                           //    credentialsId: 'US1783052_GitHub_App_test',
                           //    url: 'https://github.com/zuznar/test.git'
 
-                          sh 'ping www.github.com'
+                          //sh 'ping www.github.com'
 
                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
                             sh 'git clone https://github.com/zuznar/test.git test'
