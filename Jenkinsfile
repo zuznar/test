@@ -70,7 +70,8 @@ pipeline {
                             sh 'git checkout -b task_branch'
                             sh 'echo "insert text here" > myfile.txt'
                             sh 'git add myfile.txt'
-                            sh 'git commit -am "test commit" '
+                            sh 'git commit -am "test commit"'
+                            sh 'git config --global push.default matching'
                             sh 'git push https://github.com/zuznar/test.git'
 
                           }
