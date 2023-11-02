@@ -55,8 +55,8 @@ pipeline {
                             sh 'git clone https://github.com/zuznar/test.git'
                             //sh 'cd test'
                             sh 'ls test'
-
-                            sh 'echo "insert text here" > test/myfile.txt'
+                            sh 'cd test'
+                            sh 'echo "insert text here" > myfile.txt'
                             //sh 'git config --global user.name "jenkins"'
                            // sh 'git config --global user.email abcd@abcd.com'
                             //sh "git branch ${branch_name}"
