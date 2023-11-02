@@ -52,7 +52,7 @@ pipeline {
 
 
                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
-                            sh 'git clone https://github.com/zuznar/test.git test'
+                            sh 'git clone https://github.com/zuznar/test.git'
                             //sh 'cd test'
                             sh 'ls test'
                             //sh 'echo "insert text here" > myfile.txt'
