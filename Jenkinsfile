@@ -76,10 +76,7 @@ pipeline {
         }
     }
     post {
-        failure{
-            cleanWs()
-        }
-        unstable{
+        always{
             cleanWs()
         }
     }
