@@ -67,6 +67,7 @@ pipeline {
                               //  sh "git add ${directory}"
                               //  }
                             //}
+                            sh 'git pull'
                             sh 'git checkout -b newBranch'
                             sh 'ls'
                             sh 'echo "insert text here" > myfile.txt'
