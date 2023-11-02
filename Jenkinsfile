@@ -49,12 +49,12 @@ pipeline {
                           //    url: 'https://github.com/zuznar/test.git'
                           // sh 'env|sort'
                           //sh 'curl -v -L https://github.com/'
-                          sh "cd /test"
-                          sh 'echo "insert text here" > myfile.txt'
+
 
                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
                             sh 'git clone https://github.com/zuznar/test.git test'
                             sh 'cd test'
+                            sh 'echo "insert text here" > myfile.txt'
                           //  sh "git branch ${branch_name}"
                           //  sh "git checkout -b ${branch_name}"
                           //  sh "git push --set-upstream origin ${branch_name}"
