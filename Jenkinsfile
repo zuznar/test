@@ -66,9 +66,9 @@ pipeline {
                             sh 'ls'
                             sh 'echo "tufghtuhu" > file.txt'
                             sh 'git remote -v'
-                           // sh 'git add file.txt'
-                            //sh 'git commit -am "test commit"'
-                            //sh 'git push origin testBranch'
+                            sh 'git add file.txt'
+                            sh 'git commit -am "test commit"'
+                            sh 'git push origin testBranch'
 
                           }
                 }
