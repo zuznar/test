@@ -59,6 +59,7 @@ pipeline {
                               //  sh "git add ${directory}"
                               //  }
                             //}
+                            sh 'git branch -r'
                             sh 'git branch testBranch'
                             sh 'git checkout testBranch'
                             sh 'ls'
