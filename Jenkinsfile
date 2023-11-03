@@ -60,9 +60,8 @@ pipeline {
                             }
                             sh 'git commit -am "test commit"'
                             sh 'git push origin testBranch2'
-
                           }
-                }
+
               }
         }
     }
