@@ -69,7 +69,7 @@ pipeline {
                             sh 'echo "tufghtuhu" > file.txt'
                             sh 'git add file.txt'
                             sh 'git commit -am "test commit"'
-                            sh 'git push https://github.com/zuznar/test.git'
+                            sh 'git push origin HEAD:main'
 
                           }
                 }
