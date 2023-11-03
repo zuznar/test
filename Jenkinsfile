@@ -54,11 +54,6 @@ pipeline {
                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
                             sh 'git clone https://github.com/zuznar/test.git'
                             sh 'cd test'
-                            //sh 'git config --global user.name "jenkins"'
-                           // sh 'git config --global user.email abcd@abcd.com'
-                            //sh "git branch ${branch_name}"
-                          //  sh "git checkout -b ${branch_name}"
-                          //  sh "git push --set-upstream origin ${branch_name}"
                            // script{
                              //   for (directory in CHANGED_DIRECTORIES) {
                               //  sh "git add ${directory}"
@@ -68,9 +63,10 @@ pipeline {
                             sh 'git checkout testBranch'
                             sh 'ls'
                             sh 'echo "tufghtuhu" > file.txt'
-                            sh 'git add file.txt'
-                            sh 'git commit -am "test commit"'
-                            sh 'git push origin testBranch'
+                            sh 'git remote -v'
+                           // sh 'git add file.txt'
+                            //sh 'git commit -am "test commit"'
+                            //sh 'git push origin testBranch'
 
                           }
                 }
