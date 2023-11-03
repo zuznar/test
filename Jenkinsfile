@@ -56,9 +56,9 @@ pipeline {
                             sh 'cd test'
                             sh 'git remote set-url origin https://github.com/zuznar/test.git'
                             sh 'git branch -r'
-                            sh 'git branch testBranch'
-                            sh 'git checkout testBranch'
-                            sh 'echo "tufghtuhu" > file.txt'
+                            sh 'git branch testBranch1'
+                            sh 'git checkout testBranch1'
+                            //sh 'echo "tufghtuhu" > file.txt'
                             sh 'git remote -v'
                             script{
                                 for (directory in CHANGED_DIRECTORIES) {
