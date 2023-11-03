@@ -56,19 +56,19 @@ pipeline {
                             sh 'cd test'
                             sh 'git remote set-url origin https://github.com/zuznar/test.git'
                             sh 'git branch -r'
-                            sh 'git branch testBranch1'
-                            sh 'git checkout testBranch1'
+                            sh 'git branch testBranch2'
+                            sh 'git checkout testBranch2'
                             sh 'git remote -v'
                             script{
                                 for (directory in CHANGED_DIRECTORIES) {
                                 sh "cp ${directory} test"
-                                //sh "git add ${directory}"
+                                sh "git add ${directory}"
                                 }
                             }
                             sh 'ls test'
                             //sh 'git add file.txt'
-                            //sh 'git commit -am "test commit"'
-                            //sh 'git push origin testBranch'
+                            sh 'git commit -am "test commit"'
+                           /sh 'git push origin testBranch2'
 
                           }
                 }
