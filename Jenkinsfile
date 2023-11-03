@@ -65,7 +65,7 @@ pipeline {
                               //  }
                             //}
                             sh 'git branch testBranch'
-                            sh 'git checkout -b testBranch'
+                            sh 'git checkout testBranch'
                             sh 'ls'
                             sh 'echo "tufghtuhu" > file.txt'
                             sh 'git add file.txt'
