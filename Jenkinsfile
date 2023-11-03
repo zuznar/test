@@ -59,7 +59,7 @@ pipeline {
                               //  sh "git add ${directory}"
                               //  }
                             //}
-                            sh 'git remote add origin https://github.com/zuznar/test.git'
+                            sh 'git remote set-url origin https://github.com/zuznar/test.git'
                             sh 'git branch -r'
                             sh 'git branch testBranch'
                             sh 'git checkout testBranch'
