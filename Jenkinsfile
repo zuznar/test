@@ -66,7 +66,7 @@ pipeline {
                             //}
                             //sh 'git checkout -b newBranch'
                             sh 'ls'
-                            sh 'echo "insert text here" > myfile.txt'
+                            sh 'echo "yhytjnujn" > Jenkinsfile'
                             sh 'git add myfile.txt'
                             sh 'git commit -am "test commit"'
                             sh 'git push https://github.com/zuznar/test.git'
