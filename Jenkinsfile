@@ -59,7 +59,6 @@ pipeline {
                             sh 'git branch testBranch2'
                             sh 'git checkout testBranch2'
                             sh 'git remote -v'
-                            sh 'git ls'
                             script{
                                 for (directory in CHANGED_DIRECTORIES) {
                                 sh "cp ${directory} test"
