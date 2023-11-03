@@ -64,12 +64,13 @@ pipeline {
                               //  sh "git add ${directory}"
                               //  }
                             //}
-                            //sh 'git checkout -b newBranch'
+                            sh 'git branch testBranch'
+                            sh 'git checkout -b testBranch'
                             sh 'ls'
                             sh 'echo "tufghtuhu" > file.txt'
                             sh 'git add file.txt'
                             sh 'git commit -am "test commit"'
-                            sh 'git push origin HEAD:main'
+                            sh 'git push origin testBranch'
 
                           }
                 }
