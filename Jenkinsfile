@@ -63,7 +63,9 @@ pipeline {
                             }
                             sh 'git commit -am "test commit"'
                             sh "git push origin ${BRANCH_NAME}"
-                           }
+                          }
+                    }else {
+                        println("Nothing to commit")
                     }
                 }
               }
