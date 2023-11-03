@@ -3,6 +3,7 @@
 import groovy.json.JsonOutput
 
 List CHANGED_DIRECTORIES = []
+List EMPTY_LIST = []
 String BRANCH_NAME = "Branch_name"
 
 pipeline {
@@ -43,13 +44,15 @@ pipeline {
 
         stage('Commit to GitHub') {
               steps {
+                script {
+                    if (CHANGED_DIRECTORIES != EMPTY_LIST) {
                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
                             sh 'git clone https://github.com/zuznar/test.git'
                             sh 'cd test'
                             sh 'git remote set-url origin https://github.com/zuznar/test.git'
                             sh 'git branch -r'
-                            sh 'git branch testBranch2'
-                            sh 'git checkout testBranch2'
+                            sh "git branch ${BRANCH_NAME}"
+                            sh "git checkout ${BRANCH_NAME}"
                             sh 'git remote -v'
                             script{
                                 for (directory in CHANGED_DIRECTORIES) {
@@ -59,9 +62,10 @@ pipeline {
                                 }
                             }
                             sh 'git commit -am "test commit"'
-                            sh 'git push origin testBranch2'
-                          }
-
+                            sh "git push origin ${BRANCH_NAME}"
+                           }
+                    }
+                }
               }
         }
     }
