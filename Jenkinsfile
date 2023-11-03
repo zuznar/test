@@ -53,6 +53,7 @@ pipeline {
                             sh 'git branch -r'
                             sh "git branch ${BRANCH_NAME}"
                             sh "git checkout ${BRANCH_NAME}"
+                            sh 'git pull'
                             sh 'git remote -v'
                             script{
                                 for (directory in CHANGED_DIRECTORIES) {
