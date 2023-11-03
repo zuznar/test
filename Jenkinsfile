@@ -54,19 +54,18 @@ pipeline {
                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
                             sh 'git clone https://github.com/zuznar/test.git'
                             sh 'cd test'
-                           // script{
-                             //   for (directory in CHANGED_DIRECTORIES) {
-                              //  sh "git add ${directory}"
-                              //  }
-                            //}
                             sh 'git remote set-url origin https://github.com/zuznar/test.git'
                             sh 'git branch -r'
                             sh 'git branch testBranch'
                             sh 'git checkout testBranch'
-                            sh 'ls'
                             sh 'echo "tufghtuhu" > file.txt'
                             sh 'git remote -v'
-                            sh 'git add file.txt'
+                            script{
+                                for (directory in CHANGED_DIRECTORIES) {
+                                sh "git add ${directory}"
+                                }
+                            }
+                            //sh 'git add file.txt'
                             sh 'git commit -am "test commit"'
                             sh 'git push origin testBranch'
 
