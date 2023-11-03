@@ -61,7 +61,7 @@ pipeline {
                             sh 'git remote -v'
                             script{
                                 for (directory in CHANGED_DIRECTORIES) {
-                                sh "mv ${directory} test"
+                                sh "cp ${directory} test"
                                 //sh "git add ${directory}"
                                 }
                             }
