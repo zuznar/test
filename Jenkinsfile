@@ -68,7 +68,7 @@ pipeline {
                             sh 'ls test'
                             //sh 'git add file.txt'
                             sh 'git commit -am "test commit"'
-                           /sh 'git push origin testBranch2'
+                            sh 'git push origin testBranch2'
 
                           }
                 }
