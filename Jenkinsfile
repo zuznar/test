@@ -58,16 +58,17 @@ pipeline {
                             sh 'git branch -r'
                             sh 'git branch testBranch1'
                             sh 'git checkout testBranch1'
-                            //sh 'echo "tufghtuhu" > file.txt'
                             sh 'git remote -v'
                             script{
                                 for (directory in CHANGED_DIRECTORIES) {
-                                sh "git add ${directory}"
+                                sh "mv ${directory} test"
+                                //sh "git add ${directory}"
                                 }
                             }
+                            sh 'ls test'
                             //sh 'git add file.txt'
-                            sh 'git commit -am "test commit"'
-                            sh 'git push origin testBranch'
+                            //sh 'git commit -am "test commit"'
+                            //sh 'git push origin testBranch'
 
                           }
                 }
