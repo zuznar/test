@@ -62,8 +62,8 @@ pipeline {
                             script{
                                 for (directory in CHANGED_DIRECTORIES) {
                                 sh "cp ${directory} test"
-                                sh "git add ${directory}"
-                                sh 'git commit -am "test commit"'
+                                //sh "git add ${directory}"
+                                //sh 'git commit -am "test commit"'
                                 }
                             }
                             sh 'ls test'
