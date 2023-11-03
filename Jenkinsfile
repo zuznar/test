@@ -61,16 +61,17 @@ pipeline {
                             sh 'git remote -v'
                             script{
                                 for (directory in CHANGED_DIRECTORIES) {
+                                sh "echo ${directory}"
                                 sh "cp ${directory} test"
-                                sh "git add test/${directory}"
-                                sh 'git commit -am "test commit"'
+                                //sh "git add test/${directory}"
+                                //sh 'git commit -am "test commit"'
                                 }
                             }
                             sh 'ls test'
                             //sh 'git ls'
                             //sh 'git add file.txt'
                             //sh 'git commit -am "test commit"'
-                            sh 'git push origin testBranch2'
+                            //sh 'git push origin testBranch2'
 
                           }
                 }
