@@ -53,7 +53,6 @@ pipeline {
 
                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
                             sh 'git clone https://github.com/zuznar/test.git'
-                            sh 'ls test'
                             sh 'cd test'
                             //sh 'git config --global user.name "jenkins"'
                            // sh 'git config --global user.email abcd@abcd.com'
@@ -65,13 +64,11 @@ pipeline {
                               //  sh "git add ${directory}"
                               //  }
                             //}
-                            sh 'git pull https://github.com/zuznar/test.git'
                             sh 'git checkout -b newBranch'
                             sh 'ls'
                             sh 'echo "insert text here" > myfile.txt'
                             sh 'git add myfile.txt'
                             sh 'git commit -am "test commit"'
-                            sh 'git config --global push.default matching'
                             sh 'git push https://github.com/zuznar/test.git'
 
                           }
