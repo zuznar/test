@@ -3,6 +3,7 @@
 import groovy.json.JsonOutput
 
 List CHANGED_DIRECTORIES = []
+String BRANCH_NAME = "Branch_name"
 
 pipeline {
     agent { label 'master' }
@@ -42,15 +43,6 @@ pipeline {
 
         stage('Commit to GitHub') {
               steps {
-                script{
-
-                          //git  branch: 'main',
-                          //    credentialsId: 'US1783052_GitHub_App_test',
-                          //    url: 'https://github.com/zuznar/test.git'
-                          // sh 'env|sort'
-                          //sh 'curl -v -L https://github.com/'
-
-
                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
                             sh 'git clone https://github.com/zuznar/test.git'
                             sh 'cd test'
@@ -61,17 +53,13 @@ pipeline {
                             sh 'git remote -v'
                             script{
                                 for (directory in CHANGED_DIRECTORIES) {
-                                sh "echo ${directory}"
-                                sh "cp ${directory} test"
-                                //sh "git add test/${directory}"
-                                //sh 'git commit -am "test commit"'
+                                    sh "echo ${directory}"
+                                    sh "cp ${directory} test"
+                                    sh "git add test/${directory}"
                                 }
                             }
-                            sh 'ls test'
-                            //sh 'git ls'
-                            //sh 'git add file.txt'
-                            //sh 'git commit -am "test commit"'
-                            //sh 'git push origin testBranch2'
+                            sh 'git commit -am "test commit"'
+                            sh 'git push origin testBranch2'
 
                           }
                 }
