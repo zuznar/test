@@ -4,7 +4,7 @@ import groovy.json.JsonOutput
 
 List CHANGED_DIRECTORIES = []
 List EMPTY_LIST = []
-String BRANCH_NAME = "newBranch1234"
+String BRANCH_NAME = "newBranch56565"
 
 pipeline {
     agent { label 'master' }
@@ -45,7 +45,6 @@ pipeline {
         stage('Commit to GitHub') {
               steps {
                 script {
-                    if (CHANGED_DIRECTORIES != EMPTY_LIST) {
                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
                             sh 'git clone https://github.com/zuznar/test.git'
                             //sh "cp -r Stateless\ Services/Customer\ Tier\ -\ External/beta/*.json postman-collections/Digital\ Connect/Stateless\ Services/stable/"
@@ -57,7 +56,6 @@ pipeline {
                             sh 'git add *.txt'
                             sh 'git commit -m "test commit"'
                             sh "git push origin ${BRANCH_NAME}"
-                          }
                     }
                 }
                withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test', usernameVariable: 'USER', passwordVariable: 'TOKEN')]) {
