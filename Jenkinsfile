@@ -54,7 +54,8 @@ pipeline {
                             sh "git branch ${BRANCH_NAME}"
                             sh "git checkout ${BRANCH_NAME}"
                             sh "git pull https://github.com/zuznar/test.git"
-                            sh 'git remote -v'
+                            sh "sh git fetch"
+                            //sh 'git remote -v'
                             script{
                                 for (directory in CHANGED_DIRECTORIES) {
                                     sh "echo ${directory}"
