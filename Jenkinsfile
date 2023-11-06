@@ -65,7 +65,7 @@ pipeline {
                    httpRequest(
                        url: "https://api.github.com/repos/zuznar/test/pulls",
                        httpMode: 'POST',
-                       contentTpe: 'APPLICATION_JSON',
+                       contentType: 'APPLICATION_JSON',
                        customHeaders: [
                            [maskValue: true, name: 'Authorization', value: "Bearer ${TOKEN}"],
                            [name: 'Accept', value: 'application/vnd.github+json']
