@@ -53,7 +53,7 @@ pipeline {
                             sh 'git branch -r'
                             sh "git branch ${BRANCH_NAME}"
                             sh "git checkout ${BRANCH_NAME}"
-                            sh "git pull -rebase https://github.com/zuznar/test.git"
+                            sh "git pull https://github.com/zuznar/test.git"
                             //sh 'git remote -v'
                             script{
                                 for (directory in CHANGED_DIRECTORIES) {
