@@ -68,7 +68,7 @@ pipeline {
                        contentTpe: 'APPLICATION_JSON',
                        customHeaders: [
                            [maskValue: true, name: 'Authorization', value: "Bearer ${TOKEN}"],
-                           [name: 'Accept', 'application/vnd.github+json']
+                           [name: 'Accept', value: 'application/vnd.github+json']
                        ],
                        consoleLogResponseBody: true,
                        quiet: false,
