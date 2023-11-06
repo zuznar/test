@@ -4,7 +4,7 @@ import groovy.json.JsonOutput
 
 List CHANGED_DIRECTORIES = []
 List EMPTY_LIST = []
-String BRANCH_NAME = "newBranch56565"
+String BRANCH_NAME = "newBranch5"
 
 pipeline {
     agent { label 'master' }
@@ -52,34 +52,34 @@ pipeline {
                             sh 'ls test'
                             //sh 'cd postman-collections'
                             sh 'cd test'
-                            //sh "git checkout -b ${BRANCH_NAME}"
+                            sh "git checkout -b ${BRANCH_NAME}"
                             //sh 'git add Digital\ Connect/Stateless\ Services/stable/*.json'
-                           // sh 'git add *.txt'
-                           // sh 'git commit -m "test commit"'
-                           // sh "git push origin ${BRANCH_NAME}"
+                            sh 'git add test/*.txt'
+                            sh 'git commit -m "test commit"'
+                            sh "git push origin ${BRANCH_NAME}"
                     }
                 }
-//                withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test', usernameVariable: 'USER', passwordVariable: 'TOKEN')]) {
-//                    httpRequest(
-//                        url: "https://api.github.com/repos/zuznar/test/pulls",
-//                        httpMode: 'POST',
-//                        contentType: 'APPLICATION_JSON',
-//                        customHeaders: [
-//                            [maskValue: true, name: 'Authorization', value: "Bearer ${TOKEN}"],
-//                            [name: 'Accept', value: 'application/vnd.github+json']
-//                        ],
-//                        consoleLogResponseBody: true,
-//                        quiet: false,
-//                        requestBody: writeJSON(
-//                            returnText: true,
-//                            json: [
-//                                title: 'TEST Pull Request',
-//                                head: 'test:${BRANCH_NAME}',
-//                                base: 'main'
-//                            ]
-//                        )
-//                    )
-//                }
+               withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test', usernameVariable: 'USER', passwordVariable: 'TOKEN')]) {
+                   httpRequest(
+                       url: "https://api.github.com/repos/zuznar/test/pulls",
+                       httpMode: 'POST',
+                       contentType: 'APPLICATION_JSON',
+                       customHeaders: [
+                           [maskValue: true, name: 'Authorization', value: "Bearer ${TOKEN}"],
+                           [name: 'Accept', value: 'application/vnd.github+json']
+                       ],
+                       consoleLogResponseBody: true,
+                       quiet: false,
+                       requestBody: writeJSON(
+                           returnText: true,
+                           json: [
+                               title: 'TEST Pull Request',
+                               head: 'test:${BRANCH_NAME}',
+                               base: 'main'
+                           ]
+                       )
+                   )
+               }
               }
         }
     }
