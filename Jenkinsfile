@@ -55,7 +55,6 @@ pipeline {
                             sh "git checkout -b ${BRANCH_NAME}"
                             //sh 'git add Digital\ Connect/Stateless\ Services/stable/*.json'
                             sh 'git add *.txt'
-                            sh
                             sh 'git commit -m "test commit"'
                             sh "git push origin ${BRANCH_NAME}"
                           }
