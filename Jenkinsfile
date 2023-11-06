@@ -4,7 +4,7 @@ import groovy.json.JsonOutput
 
 List CHANGED_DIRECTORIES = []
 List EMPTY_LIST = []
-String BRANCH_NAME = "Branch_name"
+String BRANCH_NAME = "newBranch1234"
 
 pipeline {
     agent { label 'master' }
@@ -48,27 +48,40 @@ pipeline {
                     if (CHANGED_DIRECTORIES != EMPTY_LIST) {
                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
                             sh 'git clone https://github.com/zuznar/test.git'
+                            //sh "cp -r Stateless\ Services/Customer\ Tier\ -\ External/beta/*.json postman-collections/Digital\ Connect/Stateless\ Services/stable/"
+                            sh 'cp -r *.txt test'
+                            //sh 'cd postman-collections'
                             sh 'cd test'
-                            sh 'git remote set-url origin https://github.com/zuznar/test.git'
-                            sh 'git branch -r'
-                            sh "git branch ${BRANCH_NAME}"
-                            sh "git checkout ${BRANCH_NAME}"
-                            sh "git pull https://github.com/zuznar/test.git"
-                            //sh 'git remote -v'
-                            script{
-                                for (directory in CHANGED_DIRECTORIES) {
-                                    sh "echo ${directory}"
-                                    sh "cp ${directory} test"
-                                    sh "git add test/${directory}"
-                                }
-                            }
-                            sh 'git commit -am "test commit"'
+                            sh "git checkout -b ${BRANCH_NAME}"
+                            //sh 'git add Digital\ Connect/Stateless\ Services/stable/*.json'
+                            sh 'git add *.txt'
+                            sh
+                            sh 'git commit -m "test commit"'
                             sh "git push origin ${BRANCH_NAME}"
                           }
-                    }else {
-                        println("Nothing to commit")
                     }
                 }
+               withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test', usernameVariable: 'USER', passwordVariable: 'TOKEN')]) {
+                   httpRequest(
+                       url: "https://api.github.com/repos/zuznar/test/pulls",
+                       httpMode: 'POST',
+                       contentTpe: 'APPLICATION_JSON',
+                       customHeaders: [
+                           [maskValue: true, name: 'Authorization', value: "Bearer ${TOKEN}"],
+                           [name: 'Accept', 'application/vnd.github+json']
+                       ],
+                       consoleLogResponseBody: true,
+                       quiet: false,
+                       requestBody: writeJSON(
+                           returnText: true,
+                           json: [
+                               title: 'TEST Pull Request',
+                               head: 'test:${BRANCH_NAME}',
+                               base: 'main'
+                           ]
+                       )
+                   )
+               }
               }
         }
     }
