@@ -56,7 +56,7 @@ pipeline {
                             //sh 'git add Digital\ Connect/Stateless\ Services/stable/*.json'
                             sh 'git add test/*.txt'
                             sh 'git commit -m "test commit"'
-                            sh "git --set-upstream origin ${BRANCH_NAME}"
+                            sh "git push --set-upstream origin ${BRANCH_NAME}"
                     }
                 }
                withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test', usernameVariable: 'USER', passwordVariable: 'TOKEN')]) {
