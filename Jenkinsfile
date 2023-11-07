@@ -48,7 +48,7 @@ pipeline {
                 script {
                         def date = new Date()
                         def sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")
-                        println sdf.format(date)
+                        println sdf.format(date).split(" ")
                 }
 
 //                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
