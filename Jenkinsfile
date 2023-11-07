@@ -52,40 +52,40 @@ pipeline {
                         println("branch name: " + branch)
                 }
 
-//                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
-//                             sh 'git clone https://github.com/zuznar/test.git'
-//                             //sh "cp -r Stateless\ Services/Customer\ Tier\ -\ External/beta/*.json postman-collections/Digital\ Connect/Stateless\ Services/stable/"
-//                             sh 'cp -r *.txt test'
-//                             //sh 'cd postman-collections'
-//                             sh 'cd test'
-//                             sh "git checkout -b ${BRANCH_NAME}"
-//                             //sh 'git add Digital\ Connect/Stateless\ Services/stable/*.json'
-//                             sh 'git add test/*.txt'
-//                             sh 'git commit -m "test commit"'
-//                             //sh "git push --set-upstream origin ${BRANCH_NAME}"
-//                             sh "git push https://github.com/zuznar/test.git ${BRANCH_NAME}"
-//                           }
-//                withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test', usernameVariable: 'USER', passwordVariable: 'TOKEN')]) {
-//                    httpRequest(
-//                        url: "https://api.github.com/repos/zuznar/test/pulls",
-//                        httpMode: 'POST',
-//                        contentType: 'APPLICATION_JSON',
-//                        customHeaders: [
-//                            [maskValue: true, name: 'Authorization', value: "Bearer ${TOKEN}"],
-//                            [name: 'Accept', value: 'application/vnd.github+json']
-//                        ],
-//                        consoleLogResponseBody: true,
-//                        quiet: false,
-//                        requestBody: writeJSON(
-//                            returnText: true,
-//                            json: [
-//                                title: 'TEST Pull Request',
-//                                head: '${BRANCH_NAME}',
-//                                base: 'main'
-//                            ]
-//                        )
-//                    )
-//                }
+                          withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
+                            sh 'git clone https://github.com/zuznar/test.git'
+                            //sh "cp -r Stateless\ Services/Customer\ Tier\ -\ External/beta/*.json postman-collections/Digital\ Connect/Stateless\ Services/stable/"
+                            sh 'cp -r *.txt test'
+                            //sh 'cd postman-collections'
+                            sh 'cd test'
+                            sh "git checkout -b ${branch}"
+                            //sh 'git add Digital\ Connect/Stateless\ Services/stable/*.json'
+                            sh 'git add test/*.txt'
+                            sh 'git commit -m "test commit"'
+                            //sh "git push --set-upstream origin ${BRANCH_NAME}"
+                            sh "git push https://github.com/zuznar/test.git ${branch}"
+                          }
+               withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test', usernameVariable: 'USER', passwordVariable: 'TOKEN')]) {
+                   httpRequest(
+                       url: "https://api.github.com/repos/zuznar/test/pulls",
+                       httpMode: 'POST',
+                       contentType: 'APPLICATION_JSON',
+                       customHeaders: [
+                           [maskValue: true, name: 'Authorization', value: "Bearer ${TOKEN}"],
+                           [name: 'Accept', value: 'application/vnd.github+json']
+                       ],
+                       consoleLogResponseBody: true,
+                       quiet: false,
+                       requestBody: writeJSON(
+                           returnText: true,
+                           json: [
+                               title: 'TEST Pull Request',
+                               head: '${branch}',
+                               base: 'main'
+                           ]
+                       )
+                   )
+               }
               }
         }
     }
