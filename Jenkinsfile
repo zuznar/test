@@ -60,13 +60,13 @@ pipeline {
                             //sh 'cd postman-collections'
                             sh 'cd test'
                            // sh "git checkout -b ${BRANCH_NAME}"
-                           sh "git checkout -b abcde"
+                           sh "git checkout -b abcdef"
                             //sh 'git add Digital\ Connect/Stateless\ Services/stable/*.json'
                             sh 'git add test/*.txt'
                             sh 'git commit -m "test commit"'
                             //sh "git push --set-upstream origin ${BRANCH_NAME}"
                             //sh "git push https://github.com/zuznar/test.git ${BRANCH_NAME}"
-                            sh "git push https://github.com/zuznar/test.git abcde"
+                            sh "git push https://github.com/zuznar/test.git abcdef"
                           }
 //                withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test', usernameVariable: 'USER', passwordVariable: 'TOKEN')]) {
 //                    httpRequest(
@@ -96,7 +96,7 @@ sh """curl -L \
       -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOiAxNjk5MzU5OTg5LCAiZXhwIjogMTY5OTM2MDU4OSwgImlzcyI6ICI0MTA2ODgifQ.eijgAgdg75QH2W0cN3b7h7Z9G2VTS9d-QoIbpV6foeiWLc4ZoQXoiAu9P4NOc2a-cVL5dr8z_enuILDK3wsoD59zEaLeTOhGzt3mINIToCbLwzUT0mFdEwkKMUZLwiNHgcPNmconROLULhF0asrreG2aMFQlDfnC__ak4MY3Vg59q9SiXoPCh92l2Cg-xEub9tdDal0q5eLZNK8ufp0GsDQ8rFWPwZQbQ7lyh1QuV6K2oD0tRFRl3-juZ03ZwdCCMFQqPzgfRZR1si2h3XWHCEqK5eFl8Ko892gCbjBQOK7EbFrJW27pUC1teOVvDfYss0MQud15wFa_KSADIIG6Jg" \
       -H "X-GitHub-Api-Version: 2022-11-28" \
       https://api.github.com/repos/zuznar/test/pulls \
-      -d '{"title":"Amazing new feature","body":"Please pull these awesome changes in!","head":"abcde","base":"main"}'"""
+      -d '{"title":"Amazing new feature","body":"Please pull these awesome changes in!","head":"abcdef","base":"main"}'"""
               }
         }
     }
