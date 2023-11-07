@@ -4,7 +4,7 @@ import groovy.json.JsonOutput
 
 List CHANGED_DIRECTORIES = []
 List EMPTY_LIST = []
-String BRANCH_NAME = "newBranch5"
+String BRANCH_NAME = "newBranch56"
 
 pipeline {
     agent { label 'master' }
