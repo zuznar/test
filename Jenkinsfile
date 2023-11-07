@@ -46,9 +46,9 @@ pipeline {
               steps {
                 script {
                         def date = new Date()
-                        sdf = new SimpleDateFormat("MM/dd/yyyy")
-                        println(sdf.format(date))
-
+                        def sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")
+                        println sdf.format(date)
+                }
 
 //                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
 //                             sh 'git clone https://github.com/zuznar/test.git'
@@ -62,8 +62,7 @@ pipeline {
 //                             sh 'git commit -m "test commit"'
 //                             //sh "git push --set-upstream origin ${BRANCH_NAME}"
 //                             sh "git push https://github.com/zuznar/test.git ${BRANCH_NAME}"
-//                     }
-//                 }
+//                           }
 //                withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test', usernameVariable: 'USER', passwordVariable: 'TOKEN')]) {
 //                    httpRequest(
 //                        url: "https://api.github.com/repos/zuznar/test/pulls",
