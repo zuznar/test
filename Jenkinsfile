@@ -1,6 +1,7 @@
 #!groovy
 
 import groovy.json.JsonOutput
+import java.text.SimpleDateFormat
 
 List CHANGED_DIRECTORIES = []
 List EMPTY_LIST = []
