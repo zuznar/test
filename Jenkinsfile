@@ -58,12 +58,12 @@ pipeline {
                             sh 'cp -r *.txt test'
                             //sh 'cd postman-collections'
                             sh 'cd test'
-                            sh "git checkout -b ${branch}"
+                            sh "git checkout -b $branch"
                             //sh 'git add Digital\ Connect/Stateless\ Services/stable/*.json'
                             sh 'git add test/*.txt'
                             sh 'git commit -m "test commit"'
                             //sh "git push --set-upstream origin ${BRANCH_NAME}"
-                            sh "git push https://github.com/zuznar/test.git ${branch}"
+                            sh "git push https://github.com/zuznar/test.git $branch"
                           }
                withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test', usernameVariable: 'USER', passwordVariable: 'TOKEN')]) {
                    httpRequest(
@@ -80,7 +80,7 @@ pipeline {
                            returnText: true,
                            json: [
                                title: 'TEST Pull Request',
-                               head: '${branch}',
+                               head: '$branch',
                                base: 'main'
                            ]
                        )
