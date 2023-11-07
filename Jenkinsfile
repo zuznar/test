@@ -66,27 +66,35 @@ pipeline {
                             //sh "git push --set-upstream origin ${BRANCH_NAME}"
                             sh "git push https://github.com/zuznar/test.git ${BRANCH_NAME}"
                           }
-               withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test', usernameVariable: 'USER', passwordVariable: 'TOKEN')]) {
-                   httpRequest(
-                       url: "https://api.github.com/repos/zuznar/test/pulls",
-                       httpMode: 'POST',
-                       contentType: 'APPLICATION_JSON',
-                       customHeaders: [
-                           [maskValue: true, name: 'Authorization', value: "Bearer ${TOKEN}"],
-                           [name: 'Accept', value: 'application/vnd.github+json']
-                       ],
-                       consoleLogResponseBody: true,
-                       quiet: false,
-                       requestBody: writeJSON(
-                           returnText: true,
-                           json: [
-                               title: 'TEST Pull Request',
-                               head: '${BRANCH_NAME}',
-                               base: 'main'
-                           ]
-                       )
-                   )
-               }
+//                withCredentials([usernamePassword(credentialsId: 'US1783052_GitHub_App_test', usernameVariable: 'USER', passwordVariable: 'TOKEN')]) {
+//                    httpRequest(
+//                        url: "https://api.github.com/repos/zuznar/test/pulls",
+//                        httpMode: 'POST',
+//                        contentType: 'APPLICATION_JSON',
+//                        customHeaders: [
+//                            [maskValue: true, name: 'Authorization', value: "Bearer ${TOKEN}"],
+//                            [name: 'Accept', value: 'application/vnd.github+json']
+//                        ],
+//                        consoleLogResponseBody: true,
+//                        quiet: false,
+//                        requestBody: writeJSON(
+//                            returnText: true,
+//                            json: [
+//                                title: 'TEST Pull Request',
+//                                head: '${BRANCH_NAME}',
+//                                base: 'main'
+//                            ]
+//                        )
+//                    )
+//                }
+
+sh "curl -L \
+      -X POST \
+      -H "Accept: application/vnd.github+json" \
+      -H "Authorization: Bearer ghs_m7tLwUIYTyuuIIGGEA13s6Srvf2pD82Asjdo" \
+      -H "X-GitHub-Api-Version: 2022-11-28" \
+      https://api.github.com/repos/zuznar/test/pulls \
+      -d '{"title":"Amazing new feature","body":"Please pull these awesome changes in!","head":"${BRANCH_NAME}","base":"main"}'"
               }
         }
     }
