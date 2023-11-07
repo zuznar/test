@@ -49,7 +49,7 @@ pipeline {
                         def date = new Date()
                         def sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")
                         def branch = sdf.format(date).toString().split(" ")
-                        println(branch)
+                        println("branch name: " + branch)
                 }
 
 //                           withCredentials([gitUsernamePassword(credentialsId: 'US1783052_GitHub_App_test')]) {
