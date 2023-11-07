@@ -49,7 +49,6 @@ pipeline {
                             sh 'git clone https://github.com/zuznar/test.git'
                             //sh "cp -r Stateless\ Services/Customer\ Tier\ -\ External/beta/*.json postman-collections/Digital\ Connect/Stateless\ Services/stable/"
                             sh 'cp -r *.txt test'
-                            sh 'ls test'
                             //sh 'cd postman-collections'
                             sh 'cd test'
                             sh "git checkout -b ${BRANCH_NAME}"
@@ -75,7 +74,7 @@ pipeline {
                            returnText: true,
                            json: [
                                title: 'TEST Pull Request',
-                               head: 'test:${BRANCH_NAME}',
+                               head: '${BRANCH_NAME}',
                                base: 'main'
                            ]
                        )
