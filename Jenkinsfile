@@ -48,7 +48,7 @@ pipeline {
                 script {
                         def date = new Date()
                         def sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")
-                        def branch = sdf.format(date).toString().replace(" ", "")
+                        def branch = sdf.format(date).toString().replace(" ", "_")
                         println("branch name: " + branch)
                 }
 
